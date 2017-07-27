@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Siyao Test</title>
+  <style type="text/css">
+    body {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    button {
+      border: none;
+      display: block;
+      padding: 12px 24px;
+      margin: 12px auto;
+      border-radius: 4px;
+    }
+
+    #console {
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 8px;
+      margin: 8px;
+      font-family: Arial;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="openMenu()">Open Menu</button>
+  <button onclick="logout()">Logout</button>
+  <div id="console"></div>
+  <script type="text/javascript">
+    var consoleDiv = document.querySelector('#console');
+    function openMenu() {
+      try {
+        window.webkit.messageHandlers.observe.postMessage({
+          action: 'bonjour/openMenu',
+          payload: {
+            whateverKey: 'whateverValue'
+          },
+          meta: {
+            whateverKey: 'whateverValue'
+          }
+        });
+        consoleDiv.innerHTML = '<p>Clicked openMenu</p>' + consoleDiv.innerHTML;
+      } catch (e) {
+        consoleDiv.innerHTML = '<p>' + e.message + '</p>' + consoleDiv.innerHTML;
+      }
+    }
+
+    function logout() {
+      try {
+        window.webkit.messageHandlers.observe.postMessage({
+          action: 'bonjour/logout',
+          payload: {
+            whateverKey: 'whateverValue'
+          },
+          meta: {
+            whateverKey: 'whateverValue'
+          }
+        });
+        consoleDiv.innerHTML = '<p>Clicked logout</p>' + consoleDiv.innerHTML;
+      } catch (e) {
+        consoleDiv.innerHTML = '<p>' + e.message + '</p>' + consoleDiv.innerHTML;
+      }
+    }
+  </script>
+</body>
+</html>
