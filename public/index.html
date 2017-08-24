@@ -30,6 +30,7 @@
 <body>
   <button onclick="openMenu()">Open Menu</button>
   <button onclick="logout()">Logout</button>
+  <input type="file" placeholder="upload a file" onchange="uploadRegularFile()" />
   <div id="console"></div>
   <script type="text/javascript">
     var consoleDiv = document.querySelector('#console');
@@ -65,6 +66,16 @@
       } catch (e) {
         consoleDiv.innerHTML = '<p>' + e.message + '</p>' + consoleDiv.innerHTML;
       }
+    }
+
+    function uploadFile(file, metadata) {
+      console.log('this is an upload when background activity is dead');
+      console.log({ file: file, metadata: metadata });
+    }
+
+    function uploadRegularFile() {
+      console.log('this is a regular upload');
+      console.dir(document.querySelector('input[type=file]').files)
     }
   </script>
 </body>
